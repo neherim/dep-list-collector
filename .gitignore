@@ -1,0 +1,7 @@
+/target
+/.idea
+/.mvn
+/local-repository
+input.txt
+output.txt
+.DS_STORE
