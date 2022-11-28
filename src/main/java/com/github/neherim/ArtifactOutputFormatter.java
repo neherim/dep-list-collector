@@ -15,14 +15,11 @@ public class ArtifactOutputFormatter {
     }
 
     /**
-     * Format dependency url by pattern:
+     * Format artifact by pattern:
      * [depUrl], #[dependency release date]
      * <p>
      * Example:
      * https://repo1.maven.org/maven2/org/yaml/snakeyaml/1.30/, #2021-12-14
-     *
-     * @param artifact maven central dependency url
-     * @return formatted string
      */
     public String format(Artifact artifact) {
         var url = artifact.getArtifactUrl(baseRepositoryUrl);
