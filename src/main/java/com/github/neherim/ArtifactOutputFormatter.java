@@ -6,21 +6,26 @@ import java.time.LocalDate;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-public class OutputFormatter {
+public class ArtifactOutputFormatter {
+
+    private final String baseRepositoryUrl;
+
+    public ArtifactOutputFormatter(String baseRepositoryUrl) {
+        this.baseRepositoryUrl = baseRepositoryUrl;
+    }
 
     /**
      * Format dependency url by pattern:
      * [depUrl], #[dependency release date]
      * <p>
      * Example:
-     * depUrl: https://repo1.maven.org/maven2/org/yaml/snakeyaml/1.30
-     * return: https://repo1.maven.org/maven2/org/yaml/snakeyaml/1.30/, #2021-12-14
+     * https://repo1.maven.org/maven2/org/yaml/snakeyaml/1.30/, #2021-12-14
      *
-     * @param depUrl maven central dependency url
+     * @param artifact maven central dependency url
      * @return formatted string
      */
-    public String format(String depUrl) {
-        var url = depUrl.endsWith("/") ? depUrl : depUrl + "/";
+    public String format(Artifact artifact) {
+        var url = artifact.getArtifactUrl(baseRepositoryUrl);
         return url + ", #" + getDependencyReleaseDate(url);
     }
 

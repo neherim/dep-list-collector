@@ -14,9 +14,6 @@ public class LocalRepository {
     public LocalRepository(String path) {
         root = new File(path);
         root.mkdirs();
-//        if (!root.exists() || !) {
-//            throw new RuntimeException("Can't create directory " + root);
-//        }
     }
 
     public File getRoot() {
@@ -33,8 +30,18 @@ public class LocalRepository {
     /**
      * Return list of all artifacts in repository
      */
-    public Set<String> getAllArtifacts() {
-        return getAllSubdirs(root);
+    public Set<Artifact> getAllArtifacts() {
+        return getAllSubdirs(root).stream()
+                .map(this::pathToArtifact)
+                .collect(Collectors.toSet());
+    }
+
+    private Artifact pathToArtifact(String artifactPath) {
+        var file = new File(artifactPath);
+        var version = file.getName();
+        var artifactId = file.getParentFile().getName();
+        var groupId = file.getParentFile().getParentFile().getPath().replace("/", ".");
+        return new Artifact(groupId, artifactId, version);
     }
 
     private Set<String> getAllSubdirs(File dir) {

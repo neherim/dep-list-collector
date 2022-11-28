@@ -27,9 +27,10 @@ Create an input file listing all your artifacts in the format: `<groupId>:<artif
 then pass this file to dep-list-collector.jar with the command:
 
 ```shell
-java -jar dep-list-collector.jar -i <INPUT_FILE> [-o <OUTPUT_FILE>]
- -i,--input <INPUT_FILE>     Path to input file with artifact list
- -o,--output <OUTPUT_FILE>   Path to output file, default: output.txt
+usage: java -jar dep-list-collector.jar [-e <PRIVATE_MAVEN_REPO_URL>] -i <INPUT_FILE> [-o <OUTPUT_FILE>]
+ -e,--exclude <PRIVATE_MAVEN_REPO_URL>   Exclude artifacts from the output list if they exists in the private maven repository
+ -i,--input <INPUT_FILE>                 Path to the input file with an artifact list
+ -o,--output <OUTPUT_FILE>               Path to the output file, default: output.txt
 ```
 
 ## Example
@@ -46,6 +47,11 @@ and `spring-boot-starter-jdbc`
 2) Run dep-list-collector:
     ```shell
     java -jar dep-list-collector.jar -i input.txt
+    ```
+   Or, if you want to exclude from the output all dependencies that already exist in your private repository, you can
+   run:
+    ```shell
+    java -jar dep-list-collector.jar -i input.txt -e https://nexus.my-company.org/maven/
     ```
 
 3) After some time it will create output.txt with all dependencies in the current folder:
