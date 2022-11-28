@@ -1,6 +1,5 @@
 /target
 /.idea
-/.mvn
 /local-repository
 input.txt
 output.txt

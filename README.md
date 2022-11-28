@@ -1,6 +1,6 @@
 Dep List Collector
 ==
-A small and simple jvm tool that lists all transitive dependencies for maven artifact.
+Small and simple jvm tool that lists all transitive dependencies for maven artifact.
 
 This can be useful if your company is using a private self-hosted maven repository instead of maven central.
 And all artifacts must be manually uploaded to this repository by the Ops team after legal or security review.
