@@ -38,6 +38,10 @@ public class Artifact {
         return url + groupId.replace('.', '/') + "/" + artifactId + "/" + version + "/";
     }
 
+    public String getPomUrl(String baseUrl) {
+        return getArtifactUrl(baseUrl) + artifactId + "-" + version + ".pom";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

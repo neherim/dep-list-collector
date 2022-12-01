@@ -19,7 +19,7 @@ public class ArtifactFilter {
             return true;
         }
         try {
-            var url = new URL(artifact.getArtifactUrl(privateMavenRepoUrl));
+            var url = new URL(artifact.getPomUrl(privateMavenRepoUrl));
             var http = (HttpURLConnection) url.openConnection();
             var include = http.getResponseCode() != 200;
             if (!include) {

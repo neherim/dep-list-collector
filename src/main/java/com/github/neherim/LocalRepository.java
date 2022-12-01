@@ -40,7 +40,7 @@ public class LocalRepository {
         var file = new File(artifactPath);
         var version = file.getName();
         var artifactId = file.getParentFile().getName();
-        var groupId = file.getParentFile().getParentFile().getPath().replace("/", ".");
+        var groupId = file.getParentFile().getParentFile().getPath().replace(File.separator, ".");
         return new Artifact(groupId, artifactId, version);
     }
 

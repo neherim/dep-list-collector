@@ -70,7 +70,7 @@ public class Main {
             var cmd = parser.parse(options, args);
             var input = cmd.getOptionValue("i");
             var output = cmd.hasOption("o") ? cmd.getOptionValue("o") : "output.txt";
-            var privateMavenRepoUrl = cmd.getOptionValue("c");
+            var privateMavenRepoUrl = cmd.getOptionValue("e");
             return new CliArgs(input, output, privateMavenRepoUrl);
         } catch (ParseException pe) {
             HelpFormatter formatter = new HelpFormatter();
