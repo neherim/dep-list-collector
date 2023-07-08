@@ -1,11 +1,11 @@
 Dep List Collector
 ==
-Small and simple jvm tool that lists all transitive dependencies for maven artifact.
+Small app that lists all transitive dependencies for for an artifact from the maven central.
 
 This can be useful if your company is using a private self-hosted maven repository instead of maven central.
 And all artifacts must be manually uploaded to this repository by the Ops team after legal or security review.
-The Dep List Collector can help you collect a list of all the `.jar` and `.pom` files you need to upload to company's
-repository to build your application.
+By passing the list of libraries you need from the maven central to the Dep List Collector input,
+you will receive a list of all `.jar` and `.pom` files that you need to upload to the company's repository.
 
 Dep List Collector uses the [jcabi-aether](https://github.com/jcabi/jcabi-aether) library to resolve all artifact
 dependencies.
