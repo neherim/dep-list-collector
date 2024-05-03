@@ -3,6 +3,7 @@ package com.github.neherim;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
@@ -23,11 +24,11 @@ public class ArtifactOutputFormatter {
      */
     public String format(Artifact artifact) {
         var url = artifact.getArtifactUrl(baseRepositoryUrl);
-        return url + ", #" + getDependencyReleaseDate(url);
+        return url + ", #" + getDependencyReleaseDate(url).orElse(null);
     }
 
 
-    private static LocalDate getDependencyReleaseDate(String url) {
+    private static Optional<LocalDate> getDependencyReleaseDate(String url) {
         try (var is = new URL(url).openStream()) {
             var text = new String(is.readAllBytes());
 
@@ -36,9 +37,9 @@ public class ArtifactOutputFormatter {
                     .results()
                     .map(MatchResult::group)
                     .map(LocalDate::parse)
-                    .max(LocalDate::compareTo).orElseThrow();
+                    .max(LocalDate::compareTo);
         } catch (IOException ex) {
-            throw new RuntimeException(ex);
+            return Optional.empty();
         }
     }
 }
